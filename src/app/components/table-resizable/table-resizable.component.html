@@ -1,0 +1,18 @@
+
+
+<div class="example-container">
+ 	<mat-table #table [dataSource]="dataSource" matSort>
+		<div>
+			<mat-header-row *matHeaderRowDef="displayedColumns;" class=""></mat-header-row>
+		</div>
+		<ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+			<mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, column)"
+			 [resizeEdges]="{bottom: false, right: true, top: false, left: true}">
+				{{ column }}
+			</mat-header-cell>
+			<mat-cell *matCellDef="let item">{{ item[column] }}</mat-cell>
+		</ng-container>
+		<mat-row id="row-{{index}}" *matRowDef="let row; columns: displayedColumns; let index = index;" >
+		</mat-row>
+	</mat-table>
+</div>
